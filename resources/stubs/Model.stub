@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Models\SAP\$NAMESPACE$;
+
+use Illuminate\Database\Eloquent\Model;
+
+class $MODEL$ extends Model
+{
+
+    /*
+        $DESCRIPTION$
+    */
+
+    protected $table = '$MODEL$';
+
+    public function getConnection()
+    {
+        return config('laravelsapmodels.connection');
+    }
+
+}

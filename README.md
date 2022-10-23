@@ -26,26 +26,11 @@ You can install the package via composer:
 composer require alixcan/laravelsapmodels
 ```
 
-You can publish and use the models with:
+Publish the config file with:
 
 ```bash
- php artisan laravelsapmodels:generate --module=HumanResources
+php artisan vendor:publish --tag="laravelsapmodels-config"
 ```
-
-Aviable Modules
-HumanResources
-MRP
-Reports
-SalesOpportunities
-Banking
-Finance
-General
-Service
-Business Partners
-Inventory and Production
-Marketing Documents
-Administration
-all
 
 This is the contents of the published config file:
 
@@ -55,11 +40,78 @@ return [
 ];
 ```
 
+
+Edit `config/database.php` file 
+
+```php
+ 'connections' => [
+    ...
+        'sapConnectionDriver' => [
+                'driver' => 'sqlsrv',
+                'url' => env('DATABASE_URL'),
+                'port' => 1433,
+                'database' => env('SAP_DATABASE_DATABASE'),
+                'username' => env('SAP_DATABASE_USERNAME'),
+                'password' => env('SAP_DATABASE_PASSWORD'),
+                'charset' => 'utf8',
+                'prefix' => '',
+                'prefix_indexes' => true,
+                //'read' => [
+                //    'host' => env('SAP_DATABASE_HOST'),
+                //],
+                //'write' => [
+                //    'host' => env('SAP_DATABASE_HOST'),
+                //]
+                'host' => env('SAP_DATABASE_HOST'),
+                //'encrypt' => 'yes', // alternatively, defer to an env variable
+                //'trust_server_certificate' => 'true', // alternatively, defer to an env variable
+        
+            ],
+    ...
+],
+```
+
+
+
+Create your `.env` variables
+```dotenv
+SAP_DATABASE_DRIVER=
+SAP_DATABASE_DATABASE=
+SAP_DATABASE_USERNAME=
+SAP_DATABASE_PASSWORD=
+SAP_DATABASE_HOST=
+```
+
+You can publish and use the models with:
+
+```bash
+ php artisan laravelsapmodels:generate --module=HumanResources
+```
+
+### Aviable Modules
+
+- HumanResources
+- MRP
+- Reports
+- SalesOpportunities
+- Banking
+- Finance
+- General
+- Service
+- Business Partners
+- Inventory and Production
+- Marketing Documents
+- Administration
+- all
+
+
+
 ## Usage
 
 ```php
-$laravelSAPModels = new Alixcan\LaravelSAPModels();
-echo $laravelSAPModels->echoPhrase('Hello, Alixcan!');
+
+return \App\Models\SAP\HumanResources\OHTR::all();
+
 ```
 
 ## Testing

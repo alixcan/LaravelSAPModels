@@ -13,7 +13,12 @@ class $MODEL$ extends Model
 
     protected $table = '$MODEL$';
 
-    public function getConnection()
+    protected $dates = false;
+
+    protected $primaryKey = false;
+
+
+    public function getConnectionName()
     {
         return config('laravelsapmodels.connection');
     }

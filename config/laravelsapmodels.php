@@ -2,5 +2,5 @@
 
 // config for Alixcan/LaravelSAPModels
 return [
-    'driver' => env('SAP_DATABASE_DRIVER', 'SAP'),
+    'conenction' => env('SAP_DATABASE_DRIVER', 'SAP'),
 ];
